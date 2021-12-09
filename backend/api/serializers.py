@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_dynamic_fields import DynamicFieldsMixin
 from blog.models import Article, Category
 
 
@@ -9,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
         lookup_field = 'slug'
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticleSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     def get_category(self, obj):
         return{
             "id": obj.categories.id,
