@@ -10,7 +10,25 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    def get_category(self, obj):
+        return{
+            "id": obj.categories.id,
+            "title": obj.categories.title,
+            "slug": obj.categories.slug
+        }
+
+    def get_author(self, obj):
+        return{
+            "id": obj.author.id,
+            "username": obj.author.username,
+            "full_name": obj.author.get_full_name(),
+        }
+
+    categories = serializers.SerializerMethodField("get_category")
+    author = serializers.SerializerMethodField("get_author")
+
     class Meta:
         model = Article
-        fields = ['id', 'title','slug','description','image','is_active','categories','author']
+        fields = ['id', 'title', 'slug', 'description',
+                  'image', 'is_active', 'categories', 'author']
         lookup_field = 'slug'
