@@ -20,6 +20,8 @@ from . import settings
 
 urlpatterns = [
     path('api/', include('api.urls')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.authtoken')),
     path('admin/', admin.site.urls),
 ]
 
