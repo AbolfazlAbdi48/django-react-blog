@@ -7,8 +7,12 @@ User = get_user_model()
 
 
 class Category(models.Model):
+    """
+    The categories model,
+    One-to-many relationship with articles.
+    """
     title = models.CharField(max_length=120)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     is_active = models.BooleanField(default=False)
 
     class Meta:
@@ -20,6 +24,9 @@ class Category(models.Model):
 
 
 class Article(models.Model):
+    """
+    The articles model.
+    """
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     description = models.TextField()

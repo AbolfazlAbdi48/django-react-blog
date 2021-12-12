@@ -7,7 +7,7 @@ class IsSuperUser(BasePermission):
             # get access to superuser
             request.user and
             request.user.is_superuser
-            )
+        )
 
 
 class IsStaffOrReadOnly(BasePermission):

@@ -4,6 +4,9 @@ from blog.models import Article, Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    """
+    The main serializer for category model.
+    """
     class Meta:
         model = Category
         fields = ['id', 'title', 'slug', 'is_active']
@@ -11,6 +14,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
+    """
+    The main serializer for article model.
+    """
     class Meta:
         model = Article
         fields = '__all__'

@@ -11,12 +11,18 @@ from .permissions import (
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    The viewset for create, list, update and delete categories.
+    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'slug'
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    """
+    The viewset for create, list, update and delete articles.
+    """
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'slug'
