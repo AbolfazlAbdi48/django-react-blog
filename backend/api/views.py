@@ -20,6 +20,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'slug'
+    filterset_fields = ['is_active', 'author']
+    search_fields = ['title', 'description']
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
