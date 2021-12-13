@@ -44,3 +44,18 @@ class Article(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+
+
+class Like(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Like'
+        verbose_name_plural = 'Likes'
+
+    def __str__(self):
+        return f'{self.owner} | {self.articles}'
