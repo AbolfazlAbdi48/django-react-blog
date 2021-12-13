@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from .validators import validate_image
 
 # Create your models here.
 
@@ -30,7 +31,7 @@ class Article(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='articles/images/')
+    image = models.ImageField(upload_to='articles/images/', validators=[validate_image])
     is_active = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
