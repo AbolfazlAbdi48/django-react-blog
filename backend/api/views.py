@@ -49,13 +49,14 @@ class LikeView(APIView):
     List all likes or create a new like.
     """
 
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, foramt=None):
         likes = Like.objects.all()
         serializer = LikeSerializer(likes, many=True)
         return Response(serializer.data)
 
     def post(self, request, foramt=None):
-        permission_classes = [IsAuthenticated]
         serializer = LikeSerializer(data=request.data)
         if serializer.is_valid():
             owner = request.user

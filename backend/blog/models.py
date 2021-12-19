@@ -48,6 +48,11 @@ class Article(models.Model):
 
 
 class Like(models.Model):
+    """
+    The main Like model,
+    One-to-many relationship with User,
+    One-to-many relationship with Article.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -58,4 +63,4 @@ class Like(models.Model):
         verbose_name_plural = 'Likes'
 
     def __str__(self):
-        return f'{self.owner} | {self.articles}'
+        return f'{self.owner} | {self.article}'
